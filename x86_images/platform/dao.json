@@ -1,0 +1,63 @@
+{
+"image_layout":[
+  {"boot":0, "fstype":"empty", "start":"1048576B", "end":"2097151B", "bin_files":[]}, 
+  {"boot":1, "fstype":"fat32", "start":"2097152B", "end":"100%", "bin_files":["linux_image", "kmod.squashfs", "rootfs.squashfs", "dao.squashfs", "env.txt"]}, 
+],
+"table_type" : "msdos", 
+"platform" : "VPD", 
+"platform_id" : 0,
+"dao":{
+  "netifc_count":[
+    {"visable":1, "editable":0, "type":"eth", "name":"eth0", "vlan":0, "tag":0, "devices":[], "src":"none"},
+    {"visable":1, "editable":0, "type":"eth", "name":"eth0", "vlan":1, "tag":100, "devices":[], "src":"none"},
+    {"visable":1, "editable":1, "type":"bridge", "name":"br0", "vlan":0, "tag":0, "devices":["eth0"], "src":"dhcp"},
+    {"visable":1, "editable":1, "type":"bridge", "name":"br1", "vlan":0, "tag":0, "devices":["eth0.100"], "src": "static", "ctrlport":1, "address":"192.168.155.1", "netmask":"255.255.255.0"},
+  ],
+  "storage_count":[
+    {"enable":1, "visable":0, "formatable":0, "type":"zram", "src":"", "dst":"", "size_kb":524288, "device":0, "label":"zram" },
+    {"enable":1, "visable":1, "formatable":0, "type":"fat", "src":"/dev/sda1", "dst":"/hdd/sys", "label":"system" },
+    {"enable":1, "visable":1, "formatable":0, "type":"ext4", "src":"/dev/sda2", "dst":"/hdd/data", "label":"data" },
+    {"enable":0, "visable":1, "formatable":0, "type":"ext4", "src":"/dev/sdb", "dst":"/hdd/sdb", "label":"sdb" },
+    {"enable":0, "visable":1, "formatable":0, "type":"ext4", "src":"/dev/sdc", "dst":"/hdd/sdc", "label":"sdc" },
+    {"enable":1, "visable":1, "formatable":0, "type":"ext4", "src":"/dev/sdd", "dst":"/hdd/sdd", "label":"sdd" },
+  ],
+  "lxc_count":[
+    {"enable":0, "name":"vm001", "rootfs":"/hdd/vm001", "fstab":"/hdd/vm001.fstab", "nettype":"veth", "nethwlink":"br0", "nethwaddr":"00:19:82:03:21:01", "ipaddress":"192.168.155.1", "gateway":"192.168.155.254"},
+    {"enable":0, "name":"vm002", "rootfs":"/hdd/vm002", "fstab":"/hdd/vm002.fstab", "nettype":"veth", "nethwlink":"br0", "nethwaddr":"00:19:82:03:21:02", "ipaddress":"192.168.155.2", "gateway":"192.168.155.254"},
+    {"enable":0, "name":"vm003", "rootfs":"/hdd/vm003", "fstab":"/hdd/vm003.fstab", "nettype":"veth", "nethwlink":"br0", "nethwaddr":"00:19:82:03:21:03", "ipaddress":"192.168.155.3", "gateway":"192.168.155.254"},
+    {"enable":0, "name":"vm004", "rootfs":"/hdd/vm004", "fstab":"/hdd/vm004.fstab", "nettype":"veth", "nethwlink":"br0", "nethwaddr":"00:19:82:03:21:04", "ipaddress":"192.168.155.4", "gateway":"192.168.155.254"},
+    {"enable":0, "name":"vm005", "rootfs":"/hdd/vm005", "fstab":"/hdd/vm005.fstab", "nettype":"veth", "nethwlink":"br0", "nethwaddr":"00:19:82:03:21:05", "ipaddress":"192.168.155.5", "gateway":"192.168.155.254"},
+    {"enable":0, "name":"vm006", "rootfs":"/hdd/vm006", "fstab":"/hdd/vm006.fstab", "nettype":"veth", "nethwlink":"br0", "nethwaddr":"00:19:82:03:21:06", "ipaddress":"192.168.155.6", "gateway":"192.168.155.254"}
+  ],
+  "qemu_count":[
+    {"enable":1, "name":"qemu001", "rootfs":["/hdd/sdd/qemu001.sys.qcow2"], "nethwaddr":"01:19:82:03:21:01", "memory":1024, "smp": 2},
+    {"enable":0, "name":"qemu002", "rootfs":["/hdd/sdd/qemu002.sys.qcow2"], "nethwaddr":"01:19:82:03:21:02", "memory":1024, "smp": 2},
+    {"enable":0, "name":"qemu003", "rootfs":["/hdd/sdd/qemu003.sys.qcow2"], "nethwaddr":"01:19:82:03:21:03", "memory":1024, "smp": 2},
+    {"enable":0, "name":"qemu004", "rootfs":["/hdd/sdd/qemu004.sys.qcow2"], "nethwaddr":"01:19:82:03:21:04", "memory":1024, "smp": 2},
+    {"enable":0, "name":"qemu005", "rootfs":["/hdd/sdd/qemu005.sys.qcow2"], "nethwaddr":"01:19:82:03:21:05", "memory":1024, "smp": 2},
+    {"enable":0, "name":"qemu006", "rootfs":["/hdd/sdd/qemu006.sys.qcow2"], "nethwaddr":"01:19:82:03:21:06", "memory":1024, "smp": 2}
+  ],
+  "rfb_count":[
+    {"type": "tcp_ip", "host":"192.168.1.111", "port":5921},
+    {"type": "tcp_ip", "host":"192.168.1.111", "port":5922},
+    {"type": "tcp_ip", "host":"192.168.1.111", "port":5923},
+    {"type": "tcp_ip", "host":"192.168.1.111", "port":5924},
+    {"type": "tcp_ip", "host":"192.168.1.111", "port":5925},
+    {"type": "tcp_ip", "host":"192.168.1.111", "port":5926}
+  ],
+  "samba_count":[
+    {"enable":1, "type":"global", "name":"samba1", "path":""},
+    {"enable":1, "type":"shrdir", "name":"samba2", "path":"/tmp"},
+    {"enable":1, "type":"shrdir", "name":"samba3", "path":"/hdd"}
+  ],
+  "sysinit_count":[
+  ],
+  "misc_count":{
+    "config_version":{"major":0, "minor":0, "aux":0},
+    "hostname_cfg":{"hostname":"qemu1"}
+    "drbd_cfg":{"ipaddress_local":"", "macaddress_local":"", "hostname_local":"qemu1", "drbd_local":"/dev/drbd0", "disk_local":"/dev/sdb", "hostname_remote":"qemu2", "drbd_remote":"/dev/drbd0", "disk_remote":"/dev/sdb", "ipaddress_remote":"", "macaddress_remote":""}
+    "dri_cfg":{"enable":1, "path":"/dev/dri/card1"}
+  },
+}
+}
+
